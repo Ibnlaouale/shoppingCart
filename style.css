@@ -1,0 +1,33 @@
+body{
+   padding: 0px;
+   margin: 0px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+}
+.commande{
+    border: 2px solid green;
+    margin-top: 5rem!important;
+    background-color: antiquewhite;
+    /* margin-left: 1rem !important; */
+}
+
+.imgCommande{
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+}
+
+ .hidden{
+    display: none;
+} 
+
+.acceuille{
+    height: 100vh !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background: url('./tissu.jpg');
+}
+
+
