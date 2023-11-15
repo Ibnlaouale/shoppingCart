@@ -1,33 +1,125 @@
-body{
-   padding: 0px;
-   margin: 0px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-}
-.commande{
-    border: 2px solid green;
-    margin-top: 5rem!important;
-    background-color: antiquewhite;
-    /* margin-left: 1rem !important; */
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Klee+One:wght@400;600&family=Playfair+Display&family=Ruda&display=swap');
+body {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.imgCommande{
-    width: 20px !important;
-    height: 20px !important;
-    border-radius: 50% !important;
+#notification {
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: antiquewhite;
+  height: 4rem;
+  width: 20%;
+  position: fixed;
+  right: 0%;
+  z-index: 200;
+  text-align: center;
+  margin-right: 2%;
+  padding: 0% !important;
+  animation: notification 1s;
+
+  font-family: 'Edu TAS Beginner', cursive;
+  font-family: 'Klee One', cursive;
+  font-family: 'Playfair Display', serif;
+  font-family: 'Ruda', sans-serif;
 }
 
- .hidden{
-    display: none;
-} 
+@keyframes notification {
+  from {
+    transform: translateX(200%);
+  }
 
-.acceuille{
-    height: 100vh !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background: url('./tissu.jpg');
+  to {
+    transform: translateX(0);
+  }
+}
+
+#notification p {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  font-weight: bold !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: fit-content !important;
+
+}
+
+.commande {
+  border: 2px solid green;
+  margin-top: 5rem !important;
+  background-color: antiquewhite;
+  z-index: 500;
+  /* margin-left: 1rem !important; */
+}
+
+.imgCommande {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+}
+
+#imgAboutUs {
+  width: 100%;
+  height: -moz-available;
+  /* WebKit-based browsers will ignore this. */
+  height: -webkit-fill-available;
+  /* Mozilla-based browsers will ignore this. */
+  height: fill-available;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.acceuille {
+  height: 100vh !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background: url('./tissu.jpg');
+}
+
+/* =============================== */
+.swiper {
+  width: 600px;
+  height: 300px;
 }
 
 
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 425px) {
+
+  /* body{
+      background-color: blue !important;
+    } */
+  /* #divAboutUs{
+      display: block !important;
+    } */
+  #input-group {
+    width: 100% !important;
+  }
+}

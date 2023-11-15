@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChoppingCarts</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChoppingCarts</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Inter:wght@400;600&family=League+Spartan:wght@700&family=Ruda&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Inter:wght@400;600&family=League+Spartan:wght@700&family=Ruda&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Klee+One:wght@400;600&family=Playfair+Display&family=Ruda&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container-fluid">
-        <header >
-            <nav class="navbar bg-body-tertiary">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">
-                    <img class="rounded-5" src="logo.jpeg" alt="Bootstrap" width="100" height="100">
-                  </a>
-                  <ul class="text-danger list-inline">
-                    <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#">Home</a></li>
-                    <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#about">About</a></li>
-                    <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#store">Store</a></li>
-                  </ul>
-                  <div>
-                    <div class="commande position-absolute hidden">
-                      <table class="table">
-                        <tbody id="tbody">
-                          <!-- <tr id="line">
+  <div class="container-fluid">
+    <header>
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img class="rounded-5" src="logo.jpeg" alt="Bootstrap" width="100" height="100">
+          </a>
+          <ul class="text-danger list-inline">
+            <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#">Home</a></li>
+            <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#about">About</a>
+            </li>
+            <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#store">Store</a>
+            </li>
+          </ul>
+          <div>
+            <div class="commande position-absolute hidden">
+              <table class="table">
+                <tbody id="tbody">
+                  <!-- <tr id="line">
                             <td><div class="imCommande"><img class="img-fluid rounded-5" src="logo.jpeg" alt=""></div></td>
                             <td>2 X</td>
                             <td>tissu</td>
@@ -39,82 +51,122 @@
                             <td><a href=""><i class="bi bi-trash fs-2 text-danger text-decoration-none"></i></a></td>
                           </tr> -->
 
-                        </tbody>
-                      </table>
-                      <div  class="d-flex justify-content-evenly mt-2">
-                        <h2>Total:</h2> 
-                        <h2 id="totaux">0.00 FCFA</h2>
-                      </div>
-                      <div class="my-3 d-flex justify-content-evenly">
-                        <button id="clear" type="button" class="btn btn-outline-dark">CLEAR CART</button>
-                        <button type="button" class="btn btn-outline-danger">CHECK OUT</button>
-                      </div>
-                    </div>
-                    <span class="fs-4"><i class="bi bi-telephone-fill"></i>+227 97530113</span>
-                    <button id="button"  type="button" class="btn btn-outline-danger ms-3 fs-4"><i class="bi bi-cart-dash-fill"></i><span>0 items- <span>00 FCFA</span></span></button>
-                  </div>
-                </div>
-              </nav>
-
-              
-          </header>
-          <div class="acceuille row">
-            <div class="d-flex justify-content-center align-items-center flex-column">
-              <p class="fs-1 text-white">BIENVENUE SUR NOTRE SITE</p>
-              <a href="#explorer" class="btn btn-outline-danger mt-3 fs-2 text-white">EXPLORER</a>
-            </div>
-          </div>
-
-          <div class="row mt-5">
-            <div class="col-6 d-flex justify-content-center flex-column align-items-center">
-              <h1 id="about">About Us</h1>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, nihil provident ut cupiditate nam repellat? Dolorem, suscipit corrupti et veritatis facilis cupiditate sint voluptas minus ea ipsum ab officia aperiam?
-              Reprehenderit quaerat nesciunt quisquam consequatur ipsam nostrum illo rerum quod dolor saepe officia blanditiis provident consectetur optio soluta, itaque delectus ullam sed dolorem dignissimos nisi. Voluptatum blanditiis quia earum culpa.
-              Similique officiis id dolorem, eum dignissimos tempore nulla aperiam assumenda ex soluta nobis odit earum iure ipsam tenetur nisi maxime facere sunt minima ipsum fugiat! Fugiat iusto provident commodi itaque.
-              Iste rem sapiente, nihil omnis distinctio nesciunt possimus inventore quod illum perferendis, nulla est veritatis. Repellendus ducimus pariatur expedita, necessitatibus, saepe illum nam amet commodi cum blanditiis quis deleniti sapiente.
-              Cum commodi obcaecati debitis aut, repudiandae aspernatur delectus iusto quos quis modi blanditiis fugiat! Iure repellat recusandae ipsam accusamus dolore quos voluptatem, suscipit a laboriosam voluptatum, aliquam cumque adipisci at!
-              Natus quia, harum inventore nisi ratione provident! Illo fugiat unde dolore rem pariatur animi atque ad sapiente, dolor dicta ab voluptate officia. Rerum eligendi culpa ducimus architecto, deserunt quod cumque.
-              Suscipit, distinctio itaque sit qui corporis et consectetur temporibus aliquam perferendis illo adipisci porro optio voluptates dolor incidunt quisquam corrupti dignissimos tempora, inventore modi labore sunt at? Qui, eveniet iste?
-              Cumque fuga dolores similique. Assumenda modi eveniet quidem dolorem, ad iste voluptatum officiis, maxime quibusdam quisquam possimus deleniti ex? Facere enim non a amet? Hic deserunt expedita pariatur cumque cum?
-              Quas architecto fugit perspiciatis. Quae deserunt magnam magni deleniti, facilis repellat quos modi iure aliquam voluptates at nam suscipit numquam repudiandae explicabo beatae dolores alias neque. Officia tempora voluptatem error!
-              Quod, sint odit dolorem beatae tempora nobis labore accusantium libero unde ipsa, cupiditate dolor ea laboriosam nemo! Debitis veritatis autem aspernatur corporis quos laudantium, unde aut quasi, a numquam quaerat?</p>
-              <a href="#explorer" class="btn btn-outline-danger mt-3 fs-2">EXPLORER</a>
-            </div>
-              <div class="col-6 d-flex justify-content-center flex-column align-items-center">
-                <img class="img-fluid" src="bazin.jpg" alt="">
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-evenly mt-2">
+                <h2>Total:</h2>
+                <h2 id="totaux">0.00 FCFA</h2>
               </div>
-
-          </div>
-
-          <section class="mb-5">
-            <div class="row justify-content-lg-center" id="explorer">
-              <div class="col-xl-9">
-                <div class="row">
-                  <div class="w-100 d-flex justify-content-center">
-                    <h1 id="store" class="mt-5 mb-2 fs-1 text-danger">Our Store</h1>
-                  </div>
-                  <div>
-                    <div class="d-flex justify-content-center mt-5">
-                      <button type="button" class="btn btn-lg btn-outline-danger filter">ALL</button>
-                      <button type="button" class="btn btn-lg btn-outline-danger mx-3 filter">BAZIN</button>
-                      <button type="button" class="btn btn-lg btn-outline-danger mx-3 filter">TISSU</button>
-                      <button type="button" class="btn btn-lg btn-outline-danger filter">PAGNE</button>
-                    </div>
-                    
-                    <div class="input-group mt-5 w-25 mx-auto">
-                      <span class="input-group-text" id="basic-addon1"><button type="button" id="btn-search" class="btn btn-link"><i class="bi bi-search text-black"></i></button></span>
-                      <input type="text" class="form-control" placeholder="Search..." id="search-input">
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="row mt-5" id="productCard"></div>
+              <div class="my-3 d-flex justify-content-evenly">
+                <button id="clear" type="button" class="btn btn-outline-dark">CLEAR CART</button>
+                <button type="button" class="btn btn-outline-danger">CHECK OUT</button>
               </div>
             </div>
-          </section>
-       
+            <span class="fs-4"><i class="bi bi-telephone-fill"></i>+227 97530113</span>
+            <button id="button" type="button" class="btn btn-outline-danger ms-3 fs-4"><i
+                class="bi bi-cart-dash-fill"></i><span>0 items- <span>00 FCFA</span></span></button>
+          </div>
+        </div>
+      </nav>
+
+
+    </header>
+    <div id="notification" class="d-none">
+      <p>1 element ajouté</p>
     </div>
-    <script src="data.js"></script>
-    <script src="index.js"></script>
+    <div class="acceuille row">
+
+          <!-- Slider main container -->
+    <div id="containerSwiper" class="swiper acceuille hidden">
+      <!-- Additional required wrapper -->
+      <div id="divSwiper" class="swiper-wrapper swiper-container">
+        <!-- Slides -->
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <!-- If we need scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+      <div id="divAcceuil" class="d-flex justify-content-center align-items-center flex-column">
+        <p class="fs-1 text-white">BIENVENUE SUR NOTRE SITE</p>
+        <a href="#explorer" class="btn btn-outline-danger mt-3 fs-2 text-white">EXPLORER</a>
+      </div>
+    </div>
+
+    <div id="divAboutUs" class="row mt-5">
+      <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center flex-column align-items-center">
+        <h1 id="about">About Us</h1>
+        <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, nihil provident ut cupiditate nam
+          repellat? Dolorem, suscipit corrupti et veritatis facilis cupiditate sint voluptas minus ea ipsum ab officia
+          aperiam?
+          Reprehenderit quaerat nesciunt quisquam consequatur ipsam nostrum illo rerum quod dolor saepe officia
+          blanditiis provident consectetur optio soluta, itaque delectus ullam sed dolorem dignissimos nisi. Voluptatum
+          blanditiis quia earum culpa.
+          Similique officiis id dolorem, eum dignissimos tempore nulla aperiam assumenda ex soluta nobis odit earum iure
+          ipsam tenetur nisi maxime facere sunt minima ipsum fugiat! Fugiat iusto provident commodi itaque.
+          Iste rem sapiente, nihil omnis distinctio nesciunt possimus inventore quod illum perferendis, nulla est
+          veritatis. Repellendus ducimus pariatur expedita, necessitatibus, saepe illum nam amet commodi cum blanditiis
+          quis deleniti sapiente.
+          Cum commodi obcaecati debitis aut, repudiandae aspernatur delectus iusto quos quis modi blanditiis fugiat!
+          Iure repellat recusandae ipsam accusamus dolore quos voluptatem, suscipit a laboriosam voluptatum, aliquam
+          cumque adipisci at!
+          Natus quia, harum inventore nisi ratione provident! Illo fugiat unde dolore rem pariatur animi atque ad
+          sapiente, dolor dicta ab voluptate officia. Rerum eligendi culpa ducimus architecto, deserunt quod cumque.
+          Suscipit, distinctio itaque sit qui corporis et consectetur temporibus aliquam perferendis illo adipisci porro
+          optio voluptates dolor incidunt quisquam corrupti dignissimos tempora, inventore modi labore sunt at? Qui,
+          eveniet iste?
+          Cumque fuga dolores similique. Assumenda modi eveniet quidem dolorem, ad iste voluptatum officiis, maxime
+          quibusdam quisquam possimus deleniti ex? Facere enim non a amet? Hic deserunt expedita pariatur cumque cum?
+          Quas architecto fugit perspiciatis. Quae deserunt magnam magni deleniti, facilis repellat quos modi iure
+          aliquam voluptates at nam suscipit numquam repudiandae explicabo beatae dolores alias neque. Officia tempora
+          voluptatem error!
+          Quod, sint odit dolorem beatae tempora nobis labore accusantium libero unde ipsa, cupiditate dolor ea
+          laboriosam nemo! Debitis veritatis autem aspernatur corporis quos laudantium, unde aut quasi, a numquam
+          quaerat?</p>
+        <a href="#explorer" class="btn btn-outline-danger mt-3 mb-3 fs-2">EXPLORER</a>
+      </div>
+      <div class=" col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center flex-column align-items-center">
+        <img id="imgAboutUs" class="img-fluid" src="bazin.jpg" alt="">
+      </div>
+
+    </div>
+    <section id="sectionStore" class="mb-5">
+      <div class="row" id="explorer">
+        <div class="row m-0 p-0">
+          <div class="row m-0 p-0">
+            <div class=" d-flex justify-content-center">
+              <h1 id="store" class="mt-5 mb-2 fs-1 text-danger w-auto">Our Store</h1>
+            </div>
+            <div class="">
+              <div class="d-flex justify-content-center mt-5 mx-0 mb-0">
+                <button type="button" class="btn btn-lg btn-outline-danger filter">ALL</button>
+                <button type="button" class="btn btn-lg btn-outline-danger mx-3 filter">BAZIN</button>
+                <button type="button" class="btn btn-lg btn-outline-danger mx-3 filter">TISSU</button>
+                <button type="button" class="btn btn-lg btn-outline-danger filter">PAGNE</button>
+              </div>
+              <div id="input-group" class="input-group mt-5 w-25 mx-auto">
+                <span class="input-group-text" id="basic-addon1"><button type="button" id="btn-search"
+                    class="btn btn-link"><i class="bi bi-search text-black"></i></button></span>
+                <input type="text" class="form-control" placeholder="Search..." id="search-input">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5 mx-0 mb-0" id="productCard"></div>
+
+      </div>
+    </section>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="data.js"></script>
+  <script src="index.js"></script>
 </body>
+
 </html>

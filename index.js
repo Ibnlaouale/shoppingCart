@@ -71,7 +71,7 @@ for (let i = 0; i < datas.length; i++) {
 }
 
 /* Stars */
-const star = document.querySelectorAll('.bi-star')
+const star = document.querySelectorAll('.bi-star');
 // console.log(star);
 star.forEach(element => {
   element.addEventListener('click', e => {
@@ -113,16 +113,20 @@ iconLinks.forEach(iconLink => {
     }
     total += price;
     items++;
+    notification();
     const findItem = list.find(listItem => listItem.img === product.img);
     if(!findItem) {
       product.quantity = 1;
       product.value = price;
       list.push(product);
+      notification();
     } else {
       const index = list.findIndex(listItem => listItem.img === product.img);
       list[index].value += price; 
       list[index].quantity++;
+      notification();
     }
+    notification();
     localStorageUpdate("list", list);
     localStorageUpdate("total", total);
     localStorageUpdate("items", items);
@@ -173,7 +177,7 @@ function addItemInSideDom (datas) {
     divcard.className = "col-xl-4 col-lg-4 col-sm-6 col-12 my-2"
     divcard.innerHTML = `
     <div class="card">
-      <img data-img="${element.url}" class="card-img-top rounded-2" src="${element.url}" alt="">
+      <img onclick = "showSliders1()" data-img="${element.url}" class="card-img-top rounded-2" src="${element.url}" alt="">
       <div class="mt-3 ms-auto position-absolute top-0 end-0">
         <i class="bi bi-star text-warning fs-3"></i>
         <i class="bi bi-star text-warning fs-4"></i>
@@ -182,13 +186,14 @@ function addItemInSideDom (datas) {
         <i class="bi bi-star text-warning fs-4"></i>
       </div>
       <div class="card-body my-2"> 
-        <a class="icon-link icon-link-hover"><i class="bi bi-cart-check-fill  fs-3"></i></a>
+        <a class="icon-link icon-link-hover text-danger text-decoration-none"><i class="bi  bi-cart-check-fill  fs-1"></i> Ajouter au panier</a>
         <div class="mt-3  d-flex justify-content-between">
           <h3 class="text-danger name">${element.name}</h3>     
           <h3 class="text-danger price">${element.value} FCFA</h3>
         </div>
       </div>
-    </div>`;
+    </div>
+   `;
     cartProduit.appendChild(divcard);
   }
 }
@@ -246,8 +251,8 @@ function cartInfoAddItem (elements) {
     //td5
     td5.appendChild(button);
     button.appendChild(i);
-    i.classList = "bi bi-trash fs-2 text-danger";
-    button.classList = "btn btn-warning";
+    i.classList = "bi bi-trash text-danger";
+    button.classList = "btn";
 
     button.addEventListener("click", () => {
       total -= element.value;
@@ -268,3 +273,78 @@ function dataToShow (search) {
   const arrayToShow = search === "ALL" ? datas : arrayFilter;
   addItemInSideDom(arrayToShow);
 }
+
+// ====================================== SWIPER ============================================
+const divImg = document.createElement('div');
+let swiper = document.querySelector('.swiper');
+const divSwiper = document.querySelector('#divSwiper');
+
+
+function addItemInDivWripper (datas) {
+  divSwiper.innerHTML = "";
+  for (let i = 0; i < datas.length; i++) {
+    const element = datas[i];
+    let divSlide = document.createElement('div');
+    divSlide.className = "swiper-slide img-fluid"
+    divSlide.innerHTML = `
+      <img onclick="showSliders2()" data-img="${element.url}" src="${element.url}" alt="">`;
+   divSwiper.appendChild(divSlide);
+  }
+}
+addItemInDivWripper (datas);
+
+const allImg = document.querySelectorAll('.imgSwip');
+// console.log(containerSwiper.classList);
+const containerSwiper = document.querySelector('#containerSwiper');
+const divAboutUs = document.querySelector('#divAboutUs');
+const sectionStore = document.querySelector('#sectionStore');
+const divAcceuil = document.querySelector('#divAcceuil');
+console.log(divAcceuil);
+
+function showSliders1() {
+  containerSwiper.classList.toggle('hidden');
+  divAboutUs.classList.add('d-none');
+  divAcceuil.classList.add('d-none');
+  sectionStore.classList.add('d-none')
+}
+function showSliders2() {
+  containerSwiper.classList.toggle('hidden');
+  divAboutUs.classList.remove('d-none');
+  divAcceuil.classList.remove('d-none');
+  sectionStore.classList.remove('d-none')
+}
+
+
+function notification() {
+  const notif = document.querySelector('#notification');
+    notif.classList.remove('d-none');
+  setTimeout(() => {
+    notif.classList.add('d-none');
+  }, 2000);
+}
+
+// ===================================================
+
+   swiper = new Swiper('.swiper', {
+  // Optional parameters
+  direction: 'horizontal',
+  loop: false,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+autoplay:{
+  delay: 5000,
+},
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  // And if we need scrollbar
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  },
+});
