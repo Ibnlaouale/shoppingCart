@@ -122,4 +122,7 @@ body {
   #input-group {
     width: 100% !important;
   }
+#notification{
+  width: 50% !important;
+}
 }

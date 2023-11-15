@@ -186,7 +186,7 @@ function addItemInSideDom (datas) {
         <i class="bi bi-star text-warning fs-4"></i>
       </div>
       <div class="card-body my-2"> 
-        <a class="icon-link icon-link-hover text-danger text-decoration-none"><i class="bi  bi-cart-check-fill  fs-1"></i> Ajouter au panier</a>
+        <a class="icon-link icon-link-hover text-danger text-decoration-none"><i class="bi  bi-cart-check-fill  fs-1"></i> <span class="mt-5">Ajouter au panier</span></a>
         <div class="mt-3  d-flex justify-content-between">
           <h3 class="text-danger name">${element.name}</h3>     
           <h3 class="text-danger price">${element.value} FCFA</h3>
