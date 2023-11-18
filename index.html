@@ -18,10 +18,12 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Klee+One:wght@400;600&family=Playfair+Display&family=Ruda&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Klee+One:wght@400;600&family=Playfair+Display&family=Ruda&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -40,7 +42,7 @@
             </li>
           </ul>
           <div>
-            <div class="commande position-absolute hidden">
+            <div class="commande position-absolute hidden rounded-3">
               <table class="table">
                 <tbody id="tbody">
                   <!-- <tr id="line">
@@ -71,28 +73,29 @@
 
 
     </header>
-    <div id="notification" class="d-none">
+    <!-- notification -->
+    <div id="notification" class="d-none fs-3 p-0">
       <p>1 element ajouté</p>
     </div>
     <div class="acceuille row">
 
-          <!-- Slider main container -->
-    <div id="containerSwiper" class="swiper acceuille hidden">
-      <!-- Additional required wrapper -->
-      <div id="divSwiper" class="swiper-wrapper swiper-container">
-        <!-- Slides -->
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
+      <!-- Slider main container -->
+      <div id="containerSwiper" class="swiper acceuille hidden">
+        <!-- Additional required wrapper -->
+        <div id="divSwiper" class="swiper-wrapper swiper-container">
+          <!-- Slides -->
+          <div class="swiper-slide"></div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
       </div>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination"></div>
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      <!-- If we need scrollbar -->
-      <div class="swiper-scrollbar"></div>
-    </div>
       <div id="divAcceuil" class="d-flex justify-content-center align-items-center flex-column">
         <p class="fs-1 text-white">BIENVENUE SUR NOTRE SITE</p>
         <a href="#explorer" class="btn btn-outline-danger mt-3 fs-2 text-white">EXPLORER</a>
@@ -102,7 +105,8 @@
     <div id="divAboutUs" class="row mt-5">
       <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center flex-column align-items-center">
         <h1 id="about">About Us</h1>
-        <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, nihil provident ut cupiditate nam
+        <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, nihil provident ut
+          cupiditate nam
           repellat? Dolorem, suscipit corrupti et veritatis facilis cupiditate sint voluptas minus ea ipsum ab officia
           aperiam?
           Reprehenderit quaerat nesciunt quisquam consequatur ipsam nostrum illo rerum quod dolor saepe officia

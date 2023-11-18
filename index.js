@@ -1,22 +1,31 @@
 /* Init localstorage datas & get datas */
 
 // data list
-if(!localStorage.getItem("list")){
+if (!localStorage.getItem("list")) {
   localStorage.setItem("list", JSON.stringify([]));
 }
 // data item 
-if(!localStorage.getItem("items")){
+if (!localStorage.getItem("items")) {
   localStorage.setItem("items", 0);
 }
 
 // data total
-if(!localStorage.getItem("total")){
+if (!localStorage.getItem("total")) {
   localStorage.setItem("total", 0);
 }
+// countStar
+if (!localStorage.getItem('countStar')) {
+  localStorage.setItem('countStar', JSON.stringify([]))
+}
 
-let list = JSON.parse(localStorage.getItem("list")), 
-  items = JSON.parse(localStorage.getItem("items")), 
+if (!localStorage.getItem('starData')) {
+    localStorage.setItem('starData', JSON.stringify(initialStarData))
+}
+
+let list = JSON.parse(localStorage.getItem("list")),
+  items = JSON.parse(localStorage.getItem("items")),
   total = JSON.parse(localStorage.getItem("total"));
+countStar = JSON.parse(localStorage.getItem('countStar'));
 
 /* Ajout des elements datas dans le DOM */
 const cartProduit = document.querySelector('#productCard');
@@ -70,33 +79,12 @@ for (let i = 0; i < datas.length; i++) {
   titeP.innerHTML = `${element.name}`;
 }
 
-/* Stars */
-const star = document.querySelectorAll('.bi-star');
-// console.log(star);
-star.forEach(element => {
-  element.addEventListener('click', e => {
-    const parentStar = e.target.parentElement;
-    // console.log(e.target.parentElement);
-    const stars = parentStar.querySelectorAll("i");
-    let check = false;
-    for (let i = 0; i < stars.length; i++) {
-      if(!check) {
-        stars[i].classList.remove('bi-star');
-        stars[i].classList.add('bi-star-fill');
-        if (stars[i] === e.target) check = true;
-      } else {
-        stars[i].classList.add('bi-star');
-        stars[i].classList.remove('bi-star-fill');
-      
-      }
-    }
-  })
-})
+
 
 /*  */
 const iconLinks = document.querySelectorAll('.icon-link'),
   totaux = document.querySelector('#totaux');
-cartInfo ();
+cartInfo();
 iconLinks.forEach(iconLink => {
   iconLink.addEventListener("click", e => {
     const card = e.target.parentElement.parentElement.parentElement;
@@ -104,25 +92,25 @@ iconLinks.forEach(iconLink => {
     const img = card.querySelector("img").getAttribute("data-img"),
       name = card.querySelector(".name").textContent,
       price = parseInt(card.querySelector(".price").textContent);
-      console.log(card);
-    console.log(img, name, price);
+    console.log(card);
+    // console.log(img, name, price);
     const product = {
       img: img,
-      name : name,
-      price : price,
+      name: name,
+      price: price,
     }
     total += price;
     items++;
     notification();
     const findItem = list.find(listItem => listItem.img === product.img);
-    if(!findItem) {
+    if (!findItem) {
       product.quantity = 1;
       product.value = price;
       list.push(product);
       notification();
     } else {
       const index = list.findIndex(listItem => listItem.img === product.img);
-      list[index].value += price; 
+      list[index].value += price;
       list[index].quantity++;
       notification();
     }
@@ -130,7 +118,7 @@ iconLinks.forEach(iconLink => {
     localStorageUpdate("list", list);
     localStorageUpdate("total", total);
     localStorageUpdate("items", items);
-    cartInfo ();
+    cartInfo();
   })
 })
 
@@ -145,10 +133,10 @@ clear.addEventListener("click", () => {
   localStorageUpdate("total", total);
   cartInfo()
 })
- 
+
 /* Filter datas */
 const filters = document.querySelectorAll(".filter");
-filters.forEach( filter => {
+filters.forEach(filter => {
   filter.addEventListener("click", e => {
     const search = e.target.textContent;
     dataToShow(search);
@@ -157,9 +145,9 @@ filters.forEach( filter => {
 
 const searchInput = document.querySelector("#search-input"),
   searchBtn = document.querySelector("#btn-search");
-searchBtn.addEventListener("click", ()=> {
+searchBtn.addEventListener("click", () => {
   const search = searchInput.value.trim().toLocaleUpperCase();
-  if(!["ALL", "BAZIN", "TISSU", "PAGNE"].includes(search)) {
+  if (!["ALL", "BAZIN", "TISSU", "PAGNE"].includes(search)) {
     searchInput.value = "";
   } else {
     dataToShow(search);
@@ -169,17 +157,17 @@ searchBtn.addEventListener("click", ()=> {
 
 /* All Functions */
 //Function Add Items inside DOM
-function addItemInSideDom (datas) {
+function addItemInSideDom(datas) {
   cartProduit.innerHTML = "";
   for (let i = 0; i < datas.length; i++) {
     const element = datas[i];
     let divcard = document.createElement('div');
     divcard.className = "col-xl-4 col-lg-4 col-sm-6 col-12 my-2"
     divcard.innerHTML = `
-    <div class="card">
+    <div id="${element.id}" class="card">
       <img onclick = "showSliders1()" data-img="${element.url}" class="card-img-top rounded-2" src="${element.url}" alt="">
-      <div class="mt-3 ms-auto position-absolute top-0 end-0">
-        <i class="bi bi-star text-warning fs-3"></i>
+      <div  class="mt-3 ms-auto position-absolute top-0 end-0 str">
+        <i class="bi bi-star text-warning fs-4"></i>
         <i class="bi bi-star text-warning fs-4"></i>
         <i class="bi bi-star text-warning fs-4"></i>
         <i class="bi bi-star text-warning fs-4"></i>
@@ -195,36 +183,136 @@ function addItemInSideDom (datas) {
     </div>
    `;
     cartProduit.appendChild(divcard);
+    updateRate();
   }
 }
 
+// **********************************************************************************************
+
+/* Stars */
+const AllStar = document.querySelectorAll('.bi-star');
+// console.log(star);
+AllStar.forEach(element => {
+  element.addEventListener('click', e => {
+    const parentStar = e.target.parentElement;
+    const parentDiv = parentStar.parentElement
+    const parentDivId = parentDiv.getAttribute('id')
+    const stars = parentStar.querySelectorAll("i");
+    
+    let starPostion = 0;
+      stars.forEach((item, index)=>{ 
+          if (item === e.target) {
+            starPostion = index + 1;
+    
+          }
+      });
+
+    console.log(parentDivId,starPostion);
+    let starData = JSON.parse(localStorage.getItem('starData'));
+    starData = starData.map(el => {
+      if (el.id == parentDivId) return {id: parentDivId, rate: starPostion}
+      return el
+    })
+    localStorage.setItem('starData', JSON.stringify(starData))
+
+    let check = false;
+    for (let i = 0; i < stars.length; i++) {
+      if (!check) {
+        stars[i].classList.remove('bi-star');
+        stars[i].classList.add('bi-star-fill');
+        if (stars[i] === e.target) check = true;
+      } else {
+        stars[i].classList.add('bi-star');
+        stars[i].classList.remove('bi-star-fill');
+      }
+    }
+  })
+})
+
+function updateRate() {
+  const AllStar = document.querySelectorAll('.bi-star');
+  AllStar.forEach(element => {
+    //get star data 
+    const parentStar = element.parentElement;
+    let starData = JSON.parse(localStorage.getItem('starData'));
+    const parentDivId = element.parentElement.parentElement.getAttribute('id');
+    const rate = starData.filter(el => el.id == parentDivId)[0].rate;
+    const stars = parentStar.querySelectorAll("i");
+    let check = false;
+    for (let i = 0; i < stars.length; i++) {
+      if (!check) {
+        stars[i].classList.remove('bi-star');
+        stars[i].classList.add('bi-star-fill');
+        if (i === rate-1) check = true;
+      } else {
+        stars[i].classList.add('bi-star');
+        stars[i].classList.remove('bi-star-fill');
+      }
+    }
+  })
+}
+
+// **********************************************************************************************
+// ==============================================================================================
+// Sélectionnez les étoiles
+// const starSpans = document.querySelectorAll(".str");
+// console.log(starSpans);
+// starSpans.forEach((span, spanIndex) => {
+//     // console.log([...span.children]);
+//     const star = [...span.children];
+//      console.log(star);
+//     star.forEach((item, starIndex) => {
+//       // console.log(item);
+//         item.addEventListener('click', () => {
+//             star.forEach((stars, index2) => {
+//                 starIndex >= index2 ? stars.classList.add('product-ratings') : stars.classList.remove('product-ratings');
+//             });
+
+//             // Enregistrez les etoiles dans le localStorage pour chaque image
+//             const ratingData = Array.from(star).map(star => star.classList.contains('product-ratings'));
+//             localStorage.setItem(`userRating-${spanIndex}`, JSON.stringify(ratingData));
+//         });
+
+//         // Récupérez et initialisez l'etoile depuis le localStorage
+//         const userRatingData = JSON.parse(localStorage.getItem(`userRating-${spanIndex}`));
+//         if (userRatingData && userRatingData.length === star.length) {
+//             if (userRatingData[starIndex]) {
+//                 item.classList.add('product-ratings');
+//             } else {
+//                 item.classList.remove('product-ratings');
+//             }
+//         }
+//     });
+// });
+// ==============================================================================================
+
 // Function update localStorage 
-function localStorageUpdate (key, value) {
+function localStorageUpdate(key, value) {
   localStorage.setItem(key, JSON.stringify(value))
 }
 
 // Cart Info
-function cartInfo () {
+function cartInfo() {
   button.children[1].innerHTML = `${items} items - <span>${total} FCFA</span>`;
   totaux.innerHTML = ` ${total}.00 FCFA`;
   cartInfoAddItem(list)
 }
 
 // Cart Info add items 
-function cartInfoAddItem (elements) {
+function cartInfoAddItem(elements) {
   const tbody = document.querySelector("#tbody");
   tbody.innerHTML = "";
   elements.forEach((element, index) => {
     const tr = document.createElement("tr"),
-    td1 = document.createElement("td"),
-    td2 = document.createElement("td"),
-    td3 = document.createElement("td"),
-    td4 = document.createElement("td"),
-    td5 = document.createElement("td"),
-    img = document.createElement("img"),
-    div = document.createElement("div"),
-    i = document.createElement("i"),
-    button = document.createElement("button");
+      td1 = document.createElement("td"),
+      td2 = document.createElement("td"),
+      td3 = document.createElement("td"),
+      td4 = document.createElement("td"),
+      td5 = document.createElement("td"),
+      img = document.createElement("img"),
+      div = document.createElement("div"),
+      i = document.createElement("i"),
+      button = document.createElement("button");
     //tobdy
     tbody.appendChild(tr);
 
@@ -261,15 +349,15 @@ function cartInfoAddItem (elements) {
       localStorageUpdate("list", list);
       localStorageUpdate("total", total);
       localStorageUpdate("items", items);
-      cartInfo ();
+      cartInfo();
     })
   })
 }
 
 // Function filter datas to show
 
-function dataToShow (search) {
-  const arrayFilter = datas.filter(({name}) => name.toLocaleUpperCase().includes(search));
+function dataToShow(search) {
+  const arrayFilter = datas.filter(({ name }) => name.toLocaleUpperCase().includes(search));
   const arrayToShow = search === "ALL" ? datas : arrayFilter;
   addItemInSideDom(arrayToShow);
 }
@@ -280,7 +368,7 @@ let swiper = document.querySelector('.swiper');
 const divSwiper = document.querySelector('#divSwiper');
 
 
-function addItemInDivWripper (datas) {
+function addItemInDivWripper(datas) {
   divSwiper.innerHTML = "";
   for (let i = 0; i < datas.length; i++) {
     const element = datas[i];
@@ -288,10 +376,10 @@ function addItemInDivWripper (datas) {
     divSlide.className = "swiper-slide img-fluid"
     divSlide.innerHTML = `
       <img onclick="showSliders2()" data-img="${element.url}" src="${element.url}" alt="">`;
-   divSwiper.appendChild(divSlide);
+    divSwiper.appendChild(divSlide);
   }
 }
-addItemInDivWripper (datas);
+addItemInDivWripper(datas);
 
 const allImg = document.querySelectorAll('.imgSwip');
 // console.log(containerSwiper.classList);
@@ -299,7 +387,7 @@ const containerSwiper = document.querySelector('#containerSwiper');
 const divAboutUs = document.querySelector('#divAboutUs');
 const sectionStore = document.querySelector('#sectionStore');
 const divAcceuil = document.querySelector('#divAcceuil');
-console.log(divAcceuil);
+// console.log(divAcceuil);
 
 function showSliders1() {
   containerSwiper.classList.toggle('hidden');
@@ -317,7 +405,7 @@ function showSliders2() {
 
 function notification() {
   const notif = document.querySelector('#notification');
-    notif.classList.remove('d-none');
+  notif.classList.remove('d-none');
   setTimeout(() => {
     notif.classList.add('d-none');
   }, 2000);
@@ -325,7 +413,7 @@ function notification() {
 
 // ===================================================
 
-   swiper = new Swiper('.swiper', {
+swiper = new Swiper('.swiper', {
   // Optional parameters
   direction: 'horizontal',
   loop: false,
@@ -334,9 +422,9 @@ function notification() {
   pagination: {
     el: '.swiper-pagination',
   },
-autoplay:{
-  delay: 5000,
-},
+  autoplay: {
+    delay: 5000,
+  },
   // Navigation arrows
   navigation: {
     nextEl: '.swiper-button-next',
@@ -348,3 +436,4 @@ autoplay:{
     el: '.swiper-scrollbar',
   },
 });
+

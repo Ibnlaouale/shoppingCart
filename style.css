@@ -50,7 +50,7 @@ body {
 }
 
 .commande {
-  border: 2px solid green;
+  border: 2px solid rgba(255, 255, 0, 0.693);
   margin-top: 5rem !important;
   background-color: antiquewhite;
   z-index: 500;
@@ -125,4 +125,8 @@ body {
 #notification{
   width: 50% !important;
 }
+}
+
+.product-ratings{
+background-color: #fff !important;
 }
