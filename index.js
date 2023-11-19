@@ -167,11 +167,11 @@ function addItemInSideDom(datas) {
     <div id="${element.id}" class="card">
       <img onclick = "showSliders1()" data-img="${element.url}" class="card-img-top rounded-2" src="${element.url}" alt="">
       <div  class="mt-3 ms-auto position-absolute top-0 end-0 str">
-        <i class="bi bi-star text-warning fs-4"></i>
-        <i class="bi bi-star text-warning fs-4"></i>
-        <i class="bi bi-star text-warning fs-4"></i>
-        <i class="bi bi-star text-warning fs-4"></i>
-        <i class="bi bi-star text-warning fs-4"></i>
+        <span class="star"><i class="bi bi-star-fill fs-4"></i></span>
+        <span class="star"><i class="bi bi-star-fill fs-4"></i></span>
+        <span class="star"><i class="bi bi-star-fill fs-4"></i></span>
+        <span class="star"><i class="bi bi-star-fill fs-4"></i></span>
+        <span class="star"><i class="bi bi-star-fill fs-4"></i></span>
       </div>
       <div class="card-body my-2"> 
         <a class="icon-link icon-link-hover text-danger text-decoration-none"><i class="bi  bi-cart-check-fill  fs-1"></i> <span class="mt-5">Ajouter au panier</span></a>
@@ -183,107 +183,106 @@ function addItemInSideDom(datas) {
     </div>
    `;
     cartProduit.appendChild(divcard);
-    updateRate();
   }
 }
 
 // **********************************************************************************************
 
 /* Stars */
-const AllStar = document.querySelectorAll('.bi-star');
-// console.log(star);
-AllStar.forEach(element => {
-  element.addEventListener('click', e => {
-    const parentStar = e.target.parentElement;
-    const parentDiv = parentStar.parentElement
-    const parentDivId = parentDiv.getAttribute('id')
-    const stars = parentStar.querySelectorAll("i");
+// const AllStar = document.querySelectorAll('.bi-star');
+// // console.log(star);
+// AllStar.forEach(element => {
+//   element.addEventListener('click', e => {
+//     const parentStar = e.target.parentElement;
+//     const parentDiv = parentStar.parentElement
+//     const parentDivId = parentDiv.getAttribute('id')
+//     const stars = parentStar.querySelectorAll("i");
     
-    let starPostion = 0;
-      stars.forEach((item, index)=>{ 
-          if (item === e.target) {
-            starPostion = index + 1;
+//     let starPostion = 0;
+//       stars.forEach((item, index)=>{ 
+//           if (item === e.target) {
+//             starPostion = index + 1;
     
-          }
-      });
+//           }
+//       });
 
-    console.log(parentDivId,starPostion);
-    let starData = JSON.parse(localStorage.getItem('starData'));
-    starData = starData.map(el => {
-      if (el.id == parentDivId) return {id: parentDivId, rate: starPostion}
-      return el
-    })
-    localStorage.setItem('starData', JSON.stringify(starData))
+//     console.log(parentDivId,starPostion);
+//     let starData = JSON.parse(localStorage.getItem('starData'));
+//     starData = starData.map(el => {
+//       if (el.id == parentDivId) return {id: parentDivId, rate: starPostion}
+//       return el
+//     })
+//     localStorage.setItem('starData', JSON.stringify(starData))
 
-    let check = false;
-    for (let i = 0; i < stars.length; i++) {
-      if (!check) {
-        stars[i].classList.remove('bi-star');
-        stars[i].classList.add('bi-star-fill');
-        if (stars[i] === e.target) check = true;
-      } else {
-        stars[i].classList.add('bi-star');
-        stars[i].classList.remove('bi-star-fill');
-      }
-    }
-  })
-})
+//     let check = false;
+//     for (let i = 0; i < stars.length; i++) {
+//       if (!check) {
+//         stars[i].classList.remove('bi-star');
+//         stars[i].classList.add('bi-star-fill');
+//         if (stars[i] === e.target) check = true;
+//       } else {
+//         stars[i].classList.add('bi-star');
+//         stars[i].classList.remove('bi-star-fill');
+//       }
+//     }
+//   })
+// })
 
-function updateRate() {
-  const AllStar = document.querySelectorAll('.bi-star');
-  AllStar.forEach(element => {
-    //get star data 
-    const parentStar = element.parentElement;
-    let starData = JSON.parse(localStorage.getItem('starData'));
-    const parentDivId = element.parentElement.parentElement.getAttribute('id');
-    const rate = starData.filter(el => el.id == parentDivId)[0].rate;
-    const stars = parentStar.querySelectorAll("i");
-    let check = false;
-    for (let i = 0; i < stars.length; i++) {
-      if (!check) {
-        stars[i].classList.remove('bi-star');
-        stars[i].classList.add('bi-star-fill');
-        if (i === rate-1) check = true;
-      } else {
-        stars[i].classList.add('bi-star');
-        stars[i].classList.remove('bi-star-fill');
-      }
-    }
-  })
-}
+// function updateRate() {
+//   const AllStar = document.querySelectorAll('.bi-star');
+//   AllStar.forEach(element => {
+//     //get star data 
+//     const parentStar = element.parentElement;
+//     let starData = JSON.parse(localStorage.getItem('starData'));
+//     const parentDivId = element.parentElement.parentElement.getAttribute('id');
+//     const rate = starData.filter(el => el.id == parentDivId)[0].rate;
+//     const stars = parentStar.querySelectorAll("i");
+//     let check = false;
+//     for (let i = 0; i < stars.length; i++) {
+//       if (!check) {
+//         stars[i].classList.remove('bi-star');
+//         stars[i].classList.add('bi-star-fill');
+//         if (i === rate-1) check = true;
+//       } else {
+//         stars[i].classList.add('bi-star');
+//         stars[i].classList.remove('bi-star-fill');
+//       }
+//     }
+//   })
+// }
 
 // **********************************************************************************************
 // ==============================================================================================
 // Sélectionnez les étoiles
-// const starSpans = document.querySelectorAll(".str");
-// console.log(starSpans);
-// starSpans.forEach((span, spanIndex) => {
-//     // console.log([...span.children]);
-//     const star = [...span.children];
-//      console.log(star);
-//     star.forEach((item, starIndex) => {
-//       // console.log(item);
-//         item.addEventListener('click', () => {
-//             star.forEach((stars, index2) => {
-//                 starIndex >= index2 ? stars.classList.add('product-ratings') : stars.classList.remove('product-ratings');
-//             });
+const starSpans = document.querySelectorAll(".str");
+console.log(starSpans);
+starSpans.forEach((span, spanIndex) => {
+    // console.log([...span.children]);
+    const star = [...span.children];
+     console.log(star);
+    star.forEach((item, starIndex) => {
+      // console.log(item);
+        item.addEventListener('click', () => {
+            star.forEach((stars, index2) => {
+                starIndex >= index2 ? stars.classList.add('product-ratings') : stars.classList.remove('product-ratings');
+            });
 
-//             // Enregistrez les etoiles dans le localStorage pour chaque image
-//             const ratingData = Array.from(star).map(star => star.classList.contains('product-ratings'));
-//             localStorage.setItem(`userRating-${spanIndex}`, JSON.stringify(ratingData));
-//         });
+            // Enregistrez les etoiles dans le localStorage pour chaque image
+            const ratingData = Array.from(star).map(star => star.classList.contains('product-ratings'));
+            localStorage.setItem(`userRating-${spanIndex}`, JSON.stringify(ratingData));
+        });
 
-//         // Récupérez et initialisez l'etoile depuis le localStorage
-//         const userRatingData = JSON.parse(localStorage.getItem(`userRating-${spanIndex}`));
-//         if (userRatingData && userRatingData.length === star.length) {
-//             if (userRatingData[starIndex]) {
-//                 item.classList.add('product-ratings');
-//             } else {
-//                 item.classList.remove('product-ratings');
-//             }
-//         }
-//     });
-// });
+        // Récupérez et initialisez l'etoile depuis le localStorage
+        const userRatingData = JSON.parse(localStorage.getItem(`userRating-${spanIndex}`));
+        if (userRatingData && userRatingData.length === star.length) {
+            if (userRatingData[starIndex]) {
+                item.classList.add('product-ratings');
+            } else {
+                item.classList.remove('product-ratings');
+            }
+        }
+    });
+});
 // ==============================================================================================
 
 // Function update localStorage 
