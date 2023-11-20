@@ -6,7 +6,9 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 0% !important;
 }
+
 
 #notification {
   border: 2px solid;
