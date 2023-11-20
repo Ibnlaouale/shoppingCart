@@ -34,7 +34,7 @@
           <a class="navbar-brand" href="#">
             <img class="rounded-5" src="logo.jpeg" alt="Bootstrap" width="100" height="100">
           </a>
-          <ul class="text-danger list-inline">
+          <ul class="text-danger btnNavbar list-inline">
             <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#">Home</a></li>
             <li class="list-inline-item fs-3 mx-5"><a class="text-danger text-decoration-none" href="#about">About</a>
             </li>
@@ -77,29 +77,30 @@
     <div id="notification" class="d-none fs-3 p-0">
       <p>1 element ajouté</p>
     </div>
-    <div class="acceuille row">
+    <div id="divAcceuil" class="acceuille row">
 
-      <!-- Slider main container -->
-      <div id="containerSwiper" class="swiper acceuille hidden">
-        <!-- Additional required wrapper -->
-        <div id="divSwiper" class="swiper-wrapper swiper-container">
-          <!-- Slides -->
-          <div class="swiper-slide"></div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
-        </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
-      </div>
-      <div id="divAcceuil" class="d-flex justify-content-center align-items-center flex-column">
-        <p class="fs-1 text-white">BIENVENUE SUR NOTRE SITE</p>
+     
+      <div  class="d-flex justify-content-center align-items-center flex-column">
+        <p class="fs-1 text-center text-white">BIENVENUE SUR NOTRE SITE</p>
         <a href="#explorer" class="btn btn-outline-danger mt-3 fs-2 text-white">EXPLORER</a>
       </div>
+    </div>
+     <!-- Slider main container -->
+     <div id="containerSwiper" class="swiper acceuille hidden">
+      <!-- Additional required wrapper -->
+      <div id="divSwiper" class="swiper-wrapper swiper-container">
+        <!-- Slides -->
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <!-- If we need scrollbar -->
+      <div class="swiper-scrollbar"></div>
     </div>
 
     <div id="divAboutUs" class="row mt-5">
@@ -149,10 +150,10 @@
             </div>
             <div class="">
               <div class="d-flex justify-content-center mt-5 mx-0 mb-0">
-                <button type="button" class="btn btn-lg btn-outline-danger filter">ALL</button>
-                <button type="button" class="btn btn-lg btn-outline-danger mx-3 filter">BAZIN</button>
-                <button type="button" class="btn btn-lg btn-outline-danger mx-3 filter">TISSU</button>
-                <button type="button" class="btn btn-lg btn-outline-danger filter">PAGNE</button>
+                <button type="button" class="btn btn-lg btn-outline-danger btnFilter filter">ALL</button>
+                <button type="button" class="btn btn-lg btn-outline-danger btnFilter mx-3 filter">BAZIN</button>
+                <button type="button" class="btn btn-lg btn-outline-danger btnFilter mx-3 filter">TISSU</button>
+                <button type="button" class="btn btn-lg btn-outline-danger btnFilter filter">PAGNE</button>
               </div>
               <div id="input-group" class="input-group mt-5 w-25 mx-auto">
                 <span class="input-group-text" id="basic-addon1"><button type="button" id="btn-search"
