@@ -18,9 +18,9 @@ if (!localStorage.getItem('countStar')) {
   localStorage.setItem('countStar', JSON.stringify([]))
 }
 
-if (!localStorage.getItem('starData')) {
-    localStorage.setItem('starData', JSON.stringify(initialStarData))
-}
+// if (!localStorage.getItem('starData')) {
+//     localStorage.setItem('starData', JSON.stringify(initialStarData))
+// }
 
 let list = JSON.parse(localStorage.getItem("list")),
   items = JSON.parse(localStorage.getItem("items")),
@@ -134,12 +134,13 @@ clear.addEventListener("click", () => {
   cartInfo()
 })
 
-/* Filter datas */
+//=========================Filter datas===================================== 
 const filters = document.querySelectorAll(".filter");
 filters.forEach(filter => {
   filter.addEventListener("click", e => {
     const search = e.target.textContent;
     dataToShow(search);
+    showStart();
   })
 });
 
@@ -148,12 +149,12 @@ const searchInput = document.querySelector("#search-input"),
 searchBtn.addEventListener("click", () => {
   const search = searchInput.value.trim().toLocaleUpperCase();
   if (!["ALL", "BAZIN", "TISSU", "PAGNE"].includes(search)) {
-    searchInput.value = "";
   } else {
     dataToShow(search);
+    showStart();
   }
 })
-
+// ==========================================================================
 
 /* All Functions */
 //Function Add Items inside DOM
@@ -197,12 +198,12 @@ function addItemInSideDom(datas) {
 //     const parentDiv = parentStar.parentElement
 //     const parentDivId = parentDiv.getAttribute('id')
 //     const stars = parentStar.querySelectorAll("i");
-    
+
 //     let starPostion = 0;
 //       stars.forEach((item, index)=>{ 
 //           if (item === e.target) {
 //             starPostion = index + 1;
-    
+
 //           }
 //       });
 
@@ -254,35 +255,43 @@ function addItemInSideDom(datas) {
 // **********************************************************************************************
 // ==============================================================================================
 // Sélectionnez les étoiles
-const starSpans = document.querySelectorAll(".str");
-console.log(starSpans);
-starSpans.forEach((span, spanIndex) => {
+function showStart() {
+  const allDivSpans = document.querySelectorAll(".str");
+  console.log('les div qui contiennent les span', allDivSpans);
+  // on le parcours
+  allDivSpans.forEach((divSpan, spanIndex) => {
+    console.log(divSpan.children);
     // console.log([...span.children]);
-    const star = [...span.children];
-     console.log(star);
-    star.forEach((item, starIndex) => {
+    const alltabOfI = [...divSpan.children];
+    //  console.log(alltabOfI);
+    alltabOfI.forEach((item, starIndex) => {
       // console.log(item);
-        item.addEventListener('click', () => {
-            star.forEach((stars, index2) => {
-                starIndex >= index2 ? stars.classList.add('product-ratings') : stars.classList.remove('product-ratings');
-            });
-
-            // Enregistrez les etoiles dans le localStorage pour chaque image
-            const ratingData = Array.from(star).map(star => star.classList.contains('product-ratings'));
-            localStorage.setItem(`userRating-${spanIndex}`, JSON.stringify(ratingData));
+      item.addEventListener('click', () => {
+        alltabOfI.forEach((stars, index2) => {
+          starIndex >= index2 ? stars.classList.add('product-ratings') : stars.classList.remove('product-ratings');
         });
 
-        // Récupérez et initialisez l'etoile depuis le localStorage
-        const userRatingData = JSON.parse(localStorage.getItem(`userRating-${spanIndex}`));
-        if (userRatingData && userRatingData.length === star.length) {
-            if (userRatingData[starIndex]) {
-                item.classList.add('product-ratings');
-            } else {
-                item.classList.remove('product-ratings');
-            }
+        // Enregistrez les etoiles dans le localStorage pour chaque image
+
+        const ratingData = alltabOfI.map(star => star.classList.contains('product-ratings'));
+
+        localStorage.setItem(`userRating-${spanIndex}`, JSON.stringify(ratingData));
+      });
+
+      // Récupérez et initialisez l'etoile depuis le localStorage
+      const userRatingData = JSON.parse(localStorage.getItem(`userRating-${spanIndex}`));
+      if (userRatingData && userRatingData.length === alltabOfI.length) {
+        if (userRatingData[starIndex]) {
+          item.classList.add('product-ratings');
+        } else {
+          item.classList.remove('product-ratings');
         }
+      }
     });
-});
+  });
+}
+
+showStart();
 // ==============================================================================================
 
 // Function update localStorage 
@@ -359,6 +368,7 @@ function dataToShow(search) {
   const arrayFilter = datas.filter(({ name }) => name.toLocaleUpperCase().includes(search));
   const arrayToShow = search === "ALL" ? datas : arrayFilter;
   addItemInSideDom(arrayToShow);
+  showStart();
 }
 
 // ====================================== SWIPER ============================================
